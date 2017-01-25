@@ -15,11 +15,11 @@ void HariMain(void)
 	init_pic();
 	io_sti(); 			/* STI执行后，IF（中断许可标志位）变为1，CPU接收中断 */
 
-	io_out8(PIC0_IMR, 0xf9); 		/*11111001*/
-	io_out8(PIC1_IMR, 0xef); 		/*11101111*/
-
 	fifo8_init(&keyfifo, 32, keybuf);
 	fifo8_init(&mousefifo, 128, mousebuf);
+
+	io_out8(PIC0_IMR, 0xf9); 		/*11111001*/
+	io_out8(PIC1_IMR, 0xef); 		/*11101111*/
 
 	init_keyboard();
 
@@ -28,6 +28,18 @@ void HariMain(void)
 
 	putfonts8_asc(binfo->vram, binfo->scrnx, 108, 108, COL8_00FF00, "fyt, I love you~");
 	sprintf(s, "scrnx = %d, scrny = %d", binfo->scrnx, binfo->scrny);
+
+	// 内存测试
+	unsigned int memtotal;
+	struct MEMMAN *memman = (struct MEMMAN *) MEMMAN_ADDR;
+
+	memtotal = memtest_sub(0x00400000, 0xbfffffff);
+	memman_init(memman);
+	memman_free(memman, 0x00001000, 0x0009e000);
+	memman_free(memman, 0x00400000, memtotal - 0x00400000);
+
+	sprintf(s, "Memory %dMB; free: %dKB.", memtotal/(1024*1024), memman_total(memman) / 1024);
+	putfonts8_asc(binfo->vram, binfo->scrnx, 0, 64, COL8_FFFFFF, s);
 
 	//mouse
 	mx = (binfo->scrnx -16) / 2;
@@ -94,75 +106,3 @@ void HariMain(void)
 	}
 }
 
-/*KeyBoard Controller*/
-void wait_KBC_sendready(void)
-{
-	for (;;)
-	{
-		// 如果从设备号0x0064处获得的数据中倒数第二位为0，表示已准备好
-		if ((io_in8(PORT_KEYSTA) & KEYSTA_SEND_NOTREDEAY) == 0) {
-			break;
-		}
-	}
-}
-
-void init_keyboard(void)
-{
-	wait_KBC_sendready();
-	io_out8(PORT_KEYCMD, KEYCMD_WRITE_MODE);
-	wait_KBC_sendready();
-	io_out8(PORT_KEYDAT, KBC_MODE);
-	return;
-}
-
-void enable_mouse(struct MOUSE_DEC *mdec)
-{
-	wait_KBC_sendready();
-	io_out8(PORT_KEYCMD, KEYCMD_SENDTO_MOUSE);
-	wait_KBC_sendready();
-	io_out8(PORT_KEYDAT, MOUSECMD_ENABLE);
-	mdec->phase = 0;
-	return;
-}
-
-int mouse_decode(struct MOUSE_DEC *mdec, unsigned char data)
-{
-	if(mdec->phase == 0) {
-		/* 等待鼠标的0xfa的状态 */
-		if(data == 0xfa) {
-			mdec->phase = 1;
-		}
-		return 0;
-	}
-	if (mdec->phase == 1) {
-		// 解决鼠标断线问题，检查第一字节的数据
-		if((data & 0xc8) == 0x08) {
-			mdec->buf[0] = data;
-			mdec->phase = 2;
-		}
-		return 0;
-	}
-	if (mdec->phase == 2) {
-		mdec->buf[1] = data;
-		mdec->phase = 3;
-		return 0;
-	}
-	if (mdec->phase == 3) {
-		mdec->buf[2] = data;
-		mdec->phase = 1;
-
-		// decode
-		mdec->btn 	= mdec->buf[0] & 0x07;
-		mdec->x 	= mdec->buf[1];
-		mdec->y 	= mdec->buf[2];
-		if((mdec->buf[0] & 0x10) != 0) {
-			mdec->x |= 0xffffff00;
-		}
-		if((mdec->buf[0] & 0x20) != 0) {
-			mdec->y |= 0xffffff00;
-		}
-		mdec->y 	= -mdec->y; 			/*y方向与画面方向相反*/
-		return 1;
-	}
-	return -1;
-}

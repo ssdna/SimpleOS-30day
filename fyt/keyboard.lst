@@ -1,0 +1,35 @@
+     1 00000000                                 [FORMAT "WCOFF"]
+     2 00000000                                 [INSTRSET "i486p"]
+     3 00000000                                 [OPTIMIZE 1]
+     4 00000000                                 [OPTION 1]
+     5 00000000                                 [BITS 32]
+     6 00000000                                 	EXTERN	_io_in8
+     7 00000000                                 	EXTERN	_io_out8
+     8 00000000                                 [FILE "keyboard.c"]
+     9                                          [SECTION .text]
+    10 00000000                                 	GLOBAL	_wait_KBC_sendready
+    11 00000000                                 _wait_KBC_sendready:
+    12 00000000 55                              	PUSH	EBP
+    13 00000001 89 E5                           	MOV	EBP,ESP
+    14 00000003                                 L2:
+    15 00000003 6A 64                           	PUSH	100
+    16 00000005 E8 [00000000]                   	CALL	_io_in8
+    17 0000000A 5A                              	POP	EDX
+    18 0000000B 83 E0 02                        	AND	EAX,2
+    19 0000000E 75 F3                           	JNE	L2
+    20 00000010 C9                              	LEAVE
+    21 00000011 C3                              	RET
+    22 00000012                                 	GLOBAL	_init_keyboard
+    23 00000012                                 _init_keyboard:
+    24 00000012 55                              	PUSH	EBP
+    25 00000013 89 E5                           	MOV	EBP,ESP
+    26 00000015 E8 FFFFFFE6                     	CALL	_wait_KBC_sendready
+    27 0000001A 6A 60                           	PUSH	96
+    28 0000001C 6A 64                           	PUSH	100
+    29 0000001E E8 [00000000]                   	CALL	_io_out8
+    30 00000023 E8 FFFFFFD8                     	CALL	_wait_KBC_sendready
+    31 00000028 6A 47                           	PUSH	71
+    32 0000002A 6A 60                           	PUSH	96
+    33 0000002C E8 [00000000]                   	CALL	_io_out8
+    34 00000031 C9                              	LEAVE
+    35 00000032 C3                              	RET

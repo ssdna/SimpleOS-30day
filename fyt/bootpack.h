@@ -27,6 +27,7 @@ void load_idtr(int limit, int addr);
 void asm_inthandler21(void);
 void asm_inthandler27(void);
 void asm_inthandler2c(void);
+unsigned int memtest_sub(unsigned int start, unsigned int end);
 
 /* graphic.c */
 void init_palette(void);
@@ -110,7 +111,7 @@ void inthandler2c(int *esp);
 #define PIC1_ICW3		0x00a1
 #define PIC1_ICW4		0x00a1
 
-/* bootpack.c */
+/* keyboard.c & mouse.c */
 #define PORT_KEYDAT 			0x0060
 #define PORT_KEYSTA 			0x0064
 #define PORT_KEYCMD 			0x0064
@@ -129,3 +130,24 @@ void wait_KBC_sendready(void);
 void init_keyboard(void);
 void enable_mouse(struct MOUSE_DEC *mdec);
 int mouse_decode(struct MOUSE_DEC *mdec, unsigned char data);
+
+/*memory.c*/
+#define MEMMAN_FREES 		4090 		/*大约是32KB*/
+#define MEMMAN_ADDR 		0x003c0000
+
+struct FREEINFO {
+	/* 可用信息 */
+	unsigned int addr, size;
+};
+
+struct MEMMAN {
+	/* 内存管理 */
+	int frees, maxfrees, lostsize, losts;
+	struct FREEINFO free[MEMMAN_FREES];
+};
+
+void memman_init(struct MEMMAN *man);
+unsigned int memman_total(struct MEMMAN *man);
+unsigned int memman_alloc(struct MEMMAN *man, unsigned int size);
+int memman_free(struct MEMMAN *man, unsigned int addr, unsigned int size);
+
