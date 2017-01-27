@@ -13,9 +13,9 @@
     13 00000000                                 	GLOBAL	_io_out8, _io_out16, _io_out32
     14 00000000                                 	GLOBAL	_io_load_eflags, _io_store_eflags
     15 00000000                                 	GLOBAL	_load_gdtr, _load_idtr
-    16 00000000                                 	GLOBAL 	_asm_inthandler21, _asm_inthandler27, _asm_inthandler2c
+    16 00000000                                 	GLOBAL 	_asm_inthandler21, _asm_inthandler27, _asm_inthandler2c, _asm_inthandler20
     17 00000000                                 	GLOBAL 	_memtest_sub
-    18 00000000                                 	EXTERN	_inthandler21, _inthandler27, _inthandler2c
+    18 00000000                                 	EXTERN	_inthandler21, _inthandler27, _inthandler2c, _inthandler20
     19 00000000                                 
     20 00000000                                 ;以下是实际的函数
     21                                          [section .text]			;目标文件中写了这些之后再写程序
@@ -151,36 +151,52 @@
    151 000000BD 07                              	POP 	ES
    152 000000BE CF                              	IRETD
    153 000000BF                                 
-   154 000000BF                                 _memtest_sub:		;unsigned int memtest_sub(unsigned int start, unsigned int end);
-   155 000000BF 57                              	PUSH 	EDI
-   156 000000C0 56                              	PUSH 	ESI
-   157 000000C1 53                              	PUSH 	EBX
-   158 000000C2 BE AA55AA55                     	MOV 	ESI, 0xaa55aa55 		;pat0 = 0xaa55aa55;
-   159 000000C7 BF 55AA55AA                     	MOV 	EDI, 0x55aa55aa 		;pat1 = 0x55aa55aa;
-   160 000000CC 8B 44 24 10                     	MOV 	EAX, [ESP+12+4] 		;i = start;
-   161 000000D0                                 mts_loop:
-   162 000000D0 89 C3                           	MOV 	EBX,EAX
-   163 000000D2 81 C3 00000FFC                  	ADD 	EBX,0xffc 				;p=i+0xffc
-   164 000000D8 8B 13                           	MOV 	EDX,[EBX] 				;old = *p
-   165 000000DA 89 33                           	MOV 	[EBX],ESI 				;*p=pat0
-   166 000000DC 83 33 FF                        	XOR 	DWORD [EBX],0xffffffff 	;*p ^= 0xffffffff
-   167 000000DF 3B 3B                           	CMP 	EDI,[EBX] 				;if(*p != pat1) goto fin;
-   168 000000E1 75 18                           	JNE 	mts_fin
-   169 000000E3 83 33 FF                        	XOR 	DWORD [EBX],0xffffffff 	;*p ^= 0xffffffff
-   170 000000E6 3B 33                           	CMP 	ESI,[EBX] 				;if(*p != pat0) goto fin;
-   171 000000E8 75 11                           	JNE 	mts_fin
-   172 000000EA 89 13                           	MOV 	[EBX],EDX 				;*p = old;
-   173 000000EC 05 00001000                     	ADD 	EAX, 0x1000 			;i += 0x1000;
-   174 000000F1 3B 44 24 14                     	CMP 	EAX,[ESP+12+8] 			;if(i <= end) goto mts_loop;
-   175 000000F5                                 
-   176 000000F5 76 D9                           	JBE 	mts_loop
-   177 000000F7 5B                              	POP 	EBX
-   178 000000F8 5E                              	POP 	ESI
-   179 000000F9 5F                              	POP 	EDI
-   180 000000FA C3                              	RET
-   181 000000FB                                 mts_fin:
-   182 000000FB 89 13                           	MOV 	[EBX],EDX 				;*p = old;
-   183 000000FD 5B                              	POP 	EBX
-   184 000000FE 5E                              	POP 	ESI
-   185 000000FF 5F                              	POP 	EDI
-   186 00000100 C3                              	RET
+   154 000000BF                                 _asm_inthandler20:
+   155 000000BF 06                              	PUSH 	ES
+   156 000000C0 1E                              	PUSH 	DS
+   157 000000C1 60                              	PUSHAD
+   158 000000C2 89 E0                           	MOV 	EAX,ESP
+   159 000000C4 50                              	PUSH 	EAX
+   160 000000C5 66 8C D0                        	MOV 	AX,SS
+   161 000000C8 8E D8                           	MOV 	DS,AX
+   162 000000CA 8E C0                           	MOV 	ES,AX
+   163 000000CC E8 [00000000]                   	CALL 	_inthandler20
+   164 000000D1 58                              	POP 	EAX
+   165 000000D2 61                              	POPAD
+   166 000000D3 1F                              	POP 	DS
+   167 000000D4 07                              	POP 	ES
+   168 000000D5 CF                              	IRETD
+   169 000000D6                                 
+   170 000000D6                                 _memtest_sub:		;unsigned int memtest_sub(unsigned int start, unsigned int end);
+   171 000000D6 57                              	PUSH 	EDI
+   172 000000D7 56                              	PUSH 	ESI
+   173 000000D8 53                              	PUSH 	EBX
+   174 000000D9 BE AA55AA55                     	MOV 	ESI, 0xaa55aa55 		;pat0 = 0xaa55aa55;
+   175 000000DE BF 55AA55AA                     	MOV 	EDI, 0x55aa55aa 		;pat1 = 0x55aa55aa;
+   176 000000E3 8B 44 24 10                     	MOV 	EAX, [ESP+12+4] 		;i = start;
+   177 000000E7                                 mts_loop:
+   178 000000E7 89 C3                           	MOV 	EBX,EAX
+   179 000000E9 81 C3 00000FFC                  	ADD 	EBX,0xffc 				;p=i+0xffc
+   180 000000EF 8B 13                           	MOV 	EDX,[EBX] 				;old = *p
+   181 000000F1 89 33                           	MOV 	[EBX],ESI 				;*p=pat0
+   182 000000F3 83 33 FF                        	XOR 	DWORD [EBX],0xffffffff 	;*p ^= 0xffffffff
+   183 000000F6 3B 3B                           	CMP 	EDI,[EBX] 				;if(*p != pat1) goto fin;
+   184 000000F8 75 18                           	JNE 	mts_fin
+   185 000000FA 83 33 FF                        	XOR 	DWORD [EBX],0xffffffff 	;*p ^= 0xffffffff
+   186 000000FD 3B 33                           	CMP 	ESI,[EBX] 				;if(*p != pat0) goto fin;
+   187 000000FF 75 11                           	JNE 	mts_fin
+   188 00000101 89 13                           	MOV 	[EBX],EDX 				;*p = old;
+   189 00000103 05 00001000                     	ADD 	EAX, 0x1000 			;i += 0x1000;
+   190 00000108 3B 44 24 14                     	CMP 	EAX,[ESP+12+8] 			;if(i <= end) goto mts_loop;
+   191 0000010C                                 
+   192 0000010C 76 D9                           	JBE 	mts_loop
+   193 0000010E 5B                              	POP 	EBX
+   194 0000010F 5E                              	POP 	ESI
+   195 00000110 5F                              	POP 	EDI
+   196 00000111 C3                              	RET
+   197 00000112                                 mts_fin:
+   198 00000112 89 13                           	MOV 	[EBX],EDX 				;*p = old;
+   199 00000114 5B                              	POP 	EBX
+   200 00000115 5E                              	POP 	ESI
+   201 00000116 5F                              	POP 	EDI
+   202 00000117 C3                              	RET

@@ -13,9 +13,9 @@
 	GLOBAL	_io_out8, _io_out16, _io_out32
 	GLOBAL	_io_load_eflags, _io_store_eflags
 	GLOBAL	_load_gdtr, _load_idtr
-	GLOBAL 	_asm_inthandler21, _asm_inthandler27, _asm_inthandler2c
+	GLOBAL 	_asm_inthandler21, _asm_inthandler27, _asm_inthandler2c, _asm_inthandler20
 	GLOBAL 	_memtest_sub
-	EXTERN	_inthandler21, _inthandler27, _inthandler2c
+	EXTERN	_inthandler21, _inthandler27, _inthandler2c, _inthandler20
 
 ;以下是实际的函数
 [section .text]			;目标文件中写了这些之后再写程序
@@ -145,6 +145,22 @@ _asm_inthandler2c:
 	MOV 	DS,AX
 	MOV 	ES,AX
 	CALL 	_inthandler2c
+	POP 	EAX
+	POPAD
+	POP 	DS
+	POP 	ES
+	IRETD
+
+_asm_inthandler20:
+	PUSH 	ES
+	PUSH 	DS
+	PUSHAD
+	MOV 	EAX,ESP
+	PUSH 	EAX
+	MOV 	AX,SS
+	MOV 	DS,AX
+	MOV 	ES,AX
+	CALL 	_inthandler20
 	POP 	EAX
 	POPAD
 	POP 	DS
