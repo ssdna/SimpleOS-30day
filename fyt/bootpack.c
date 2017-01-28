@@ -5,6 +5,8 @@
 extern struct FIFO8 keyfifo, mousefifo;
 extern struct TIMERCTL timerctl;
 
+void putfonts8_asc_sht(struct SHEET *sht, int x, int y, int c, int b, char *s, int l);
+
 void HariMain(void)
 {
 	struct BOOTINFO *binfo = (struct BOOTINFO *) ADR_BOOTINFO;
@@ -12,16 +14,17 @@ void HariMain(void)
 	int mx, my, i;
 	struct MOUSE_DEC mdec;
 	// 内存测试
-	unsigned int memtotal, count = 0;
+	unsigned int memtotal;
+	int cnt = 0;
 	struct MEMMAN *memman = (struct MEMMAN *) MEMMAN_ADDR;
 	// sheet
 	struct SHTCTL *shtctl;
 	struct SHEET *sht_back, *sht_mouse, *sht_win;
 	unsigned char *buf_back, buf_mouse[256], *buf_win;
 	// timer
-	struct FIFO8 timerfifo, timerfifo2;
-	struct TIMER *timer, *timer2;
-	char timerbuf[8], timerbuf2[8];
+	struct FIFO8 timerfifo;
+	struct TIMER *timer, *timer2, *timer3;
+	char timerbuf[8];
 
 	init_gdtidt();
 	init_pic();
@@ -37,15 +40,20 @@ void HariMain(void)
 
 	fifo8_init(&timerfifo, 8, timerbuf);
 	timer = timer_alloc();
-	timer_init(timer, &timerfifo, 1);
-	timer_settime(timer, 500);
-	fifo8_init(&timerfifo2, 8, timerbuf2);
+	timer_init(timer, &timerfifo, 10);
+	timer_settime(timer, 1000);
+	// fifo8_init(&timerfifo2, 8, timerbuf2);
 	timer2 = timer_alloc();
-	timer_init(timer2, &timerfifo2, 1);
-	timer_settime(timer2, 50);
+	timer_init(timer2, &timerfifo, 3);
+	timer_settime(timer2, 300);
+	//
+	timer3 = timer_alloc();
+	timer_init(timer3, &timerfifo, 1);
+	timer_settime(timer3, 50);
 
 
 	init_keyboard();
+	enable_mouse(&mdec);
 	/*memory*/
 	memtotal = memtest_sub(0x00400000, 0xbfffffff);
 	memman_init(memman);
@@ -102,30 +110,26 @@ void HariMain(void)
 	sprintf(s, "(%d,%d)", mx, my);
 	putfonts8_asc(binfo->vram, binfo->scrnx, 16, 100, COL8_FF0000, s);
 */
-	enable_mouse(&mdec);
 
-	while(1)
+
+	for(;;)
 	{
 		// boxfill8(buf_win,)
 
-		// count++;
-		// sprintf(s, "%010d", count);
-		sprintf(s, "%010d", timerctl.count);
-		boxfill8(buf_win, 160, COL8_C6C6C6, 40, 28, 119, 43);
-		putfonts8_asc(buf_win, 160, 40, 28, COL8_FFFF00, s);
-		sheet_refresh(sht_win, 40, 28, 120, 44);
+		cnt++; 		/*测试定时器性能*/
+		// sprintf(s, "%010d", cnt);
+		// sprintf(s, "%010d", timerctl.count);
+		// putfonts8_asc_sht(sht_win, 40, 28, COL8_FFFFFF, COL8_C6C6C6, s, 10);
 
 		io_cli();
-		if (fifo8_status(&keyfifo) + fifo8_status(&mousefifo) + fifo8_status(&timerfifo) + fifo8_status(&timerfifo2) == 0) {
-			io_stihlt();
+		if (fifo8_status(&keyfifo) + fifo8_status(&mousefifo) + fifo8_status(&timerfifo) == 0) {
+			io_sti();
 		} else {
 			if(fifo8_status(&keyfifo) != 0) {
 				i = fifo8_get(&keyfifo);
 				io_sti();
-				sprintf(s, "%02x", i);
-				boxfill8(buf_back, binfo->scrnx, COL8_008484, 0, 32, 15, 47);
-				putfonts8_asc(buf_back, binfo->scrnx, 0, 32, COL8_FFFFFF, s);
-				sheet_refresh(sht_back, 0, 32, 16, 48);
+				sprintf(s, "%02X", i);
+				putfonts8_asc_sht(sht_back, 0, 32, COL8_FFFFFF, COL8_008484, s, 2);
 			} else if(fifo8_status(&mousefifo) != 0) {
 				i = fifo8_get(&mousefifo);
 				io_sti();
@@ -141,9 +145,7 @@ void HariMain(void)
 					if((mdec.btn & 0x04) != 0) {
 						s[2] = 'C';
 					}
-					boxfill8(buf_back, binfo->scrnx, COL8_008484, 32, 32, 32+15*8-1, 47);
-					putfonts8_asc(buf_back, binfo->scrnx, 32, 32, COL8_FFFFFF, s);
-					sheet_refresh(sht_back, 32, 32, 32+15*8, 48);
+					putfonts8_asc_sht(sht_back, 32, 32, COL8_FFFFFF, COL8_008484, s, 15);
 					/* 鼠标的移动 */
 					// boxfill8(binfo->vram, binfo->scrnx, COL8_008484, mx, my, mx+15, my+15); 	/*隐藏鼠标*/
 					mx += mdec.x;
@@ -161,32 +163,42 @@ void HariMain(void)
 						my = binfo->scrny - 1;
 					}
 					sprintf(s, "(%3d, %3d)", mx, my);
-					boxfill8(buf_back, binfo->scrnx, COL8_008484, 0, 0, 79, 15); 			/*隐藏坐标*/
-					putfonts8_asc(buf_back, binfo->scrnx, 0, 0, COL8_FFFFFF, s);				/*显示坐标*/
-					// putblock8_8(binfo->vram, binfo->scrnx, 16, 16, mx, my, mcursor, 16);		/*描绘鼠标*/
-					sheet_refresh(sht_back, 0, 0, 80, 16);
+					putfonts8_asc_sht(sht_back, 0, 0, COL8_FFFFFF, COL8_008484, s, 10);
 					sheet_slide(sht_mouse, mx, my); 		/*包含sheet_refresh*/
 				}
 			} else if(fifo8_status(&timerfifo) != 0) {
 				i = fifo8_get(&timerfifo);
 				io_sti();
-				putfonts8_asc(buf_back, binfo->scrnx, 0, 80, COL8_FFFFFF, "5 [sec]");
-				sheet_refresh(sht_back, 0, 80, 56, 96);
-			} else if(fifo8_status(&timerfifo2) != 0) { /*模拟光标*/
-				i = fifo8_get(&timerfifo2);
-				io_sti();
-				if(i != 0) 
+				if (i == 10)
 				{
-					timer_init(timer2, &timerfifo2, 0); 		/*设置0*/
-					boxfill8(buf_back, binfo->scrnx, COL8_FFFFFF, 8, 96, 15, 111);
-				} else {
-					timer_init(timer2, &timerfifo2, 1); 		/*设置1*/
-					boxfill8(buf_back, binfo->scrnx, COL8_008484, 8, 96, 15, 111);
+					putfonts8_asc_sht(sht_back, 0, 80, COL8_FFFFFF, COL8_008484, "10 [sec]", 8);
+					sprintf(s, "%010d", cnt);
+					putfonts8_asc_sht(sht_win, 40, 28, COL8_FFFFFF, COL8_008484, s, 10);
+				} else if(i == 3)
+				{
+					putfonts8_asc_sht(sht_back, 0, 80+1*16, COL8_FFFFFF, COL8_008484, "3 [sec]", 7);
+					cnt = 0;
+				}else{
+					if (i != 0) {
+						timer_init(timer3, &timerfifo, 0); 		/*设置0*/
+						boxfill8(buf_back, binfo->scrnx, COL8_FFFFFF, 8, 80+2*16, 15, 80+3*16);
+					} else {
+						timer_init(timer3, &timerfifo, 1); 		/*设置1*/
+						boxfill8(buf_back, binfo->scrnx, COL8_008484, 8, 80+2*16, 15, 80+3*16);
+					}
+					timer_settime(timer3, 50);
+					sheet_refresh(sht_back, 0, 80+2*16, 16, 80+3*16);
 				}
-				timer_settime(timer2, 50);
-				sheet_refresh(sht_back, 0, 96, 16, 112);
 			}
 		}
 	}
+}
+
+void putfonts8_asc_sht(struct SHEET *sht, int x, int y, int c, int b, char *s, int l)
+{
+	boxfill8(sht->buf, sht->bxsize, b, x, y, x+l*8-1, y + 15);
+	putfonts8_asc(sht->buf, sht->bxsize, x, y, c, s);
+	sheet_refresh(sht, x, y, x+l*8, y + 16);
+	return;
 }
 
