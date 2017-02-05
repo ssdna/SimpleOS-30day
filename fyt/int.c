@@ -4,6 +4,7 @@
 /* PIC的初始化 */
 void init_pic(void)
 {
+
 	io_out8(PIC0_IMR, 0xff);		/*禁止所有中断*/
 	io_out8(PIC1_IMR, 0xff);
 
@@ -23,29 +24,6 @@ void init_pic(void)
 	return;
 }
 
-struct FIFO8 keyfifo, mousefifo;
-
-// 键盘中断
-void inthandler21(int *exp)
-{
-	unsigned char data;
-	io_out8(PIC0_OCW2, 0x61); 		/* 通知PIC: "IRQ-01已受理完毕" */
-	data = io_in8(PORT_KEYDAT);
-
-	fifo8_put(&keyfifo, data);
-
-	return;
-}
-
-void inthandler2c(int *exp)
-{
-	unsigned char data;
-	io_out8(PIC1_OCW2, 0x64);		/* 通知PIC1: "IRQ-12已受理完毕" */
-	io_out8(PIC0_OCW2, 0x62);		/* 通知PIC0: "IRQ-02已受理完毕" */
-	data = io_in8(PORT_KEYDAT);
-	fifo8_put(&mousefifo, data);
-	return;
-}
 
 void inthandler27(int *esp)
 /* PIC0からの不完全割り込み対策 */

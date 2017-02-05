@@ -5,31 +5,62 @@
      5 00000000                                 [BITS 32]
      6 00000000                                 	EXTERN	_io_in8
      7 00000000                                 	EXTERN	_io_out8
-     8 00000000                                 [FILE "keyboard.c"]
-     9                                          [SECTION .text]
-    10 00000000                                 	GLOBAL	_wait_KBC_sendready
-    11 00000000                                 _wait_KBC_sendready:
-    12 00000000 55                              	PUSH	EBP
-    13 00000001 89 E5                           	MOV	EBP,ESP
-    14 00000003                                 L2:
-    15 00000003 6A 64                           	PUSH	100
-    16 00000005 E8 [00000000]                   	CALL	_io_in8
-    17 0000000A 5A                              	POP	EDX
-    18 0000000B 83 E0 02                        	AND	EAX,2
-    19 0000000E 75 F3                           	JNE	L2
-    20 00000010 C9                              	LEAVE
-    21 00000011 C3                              	RET
-    22 00000012                                 	GLOBAL	_init_keyboard
-    23 00000012                                 _init_keyboard:
-    24 00000012 55                              	PUSH	EBP
-    25 00000013 89 E5                           	MOV	EBP,ESP
-    26 00000015 E8 FFFFFFE6                     	CALL	_wait_KBC_sendready
-    27 0000001A 6A 60                           	PUSH	96
-    28 0000001C 6A 64                           	PUSH	100
-    29 0000001E E8 [00000000]                   	CALL	_io_out8
-    30 00000023 E8 FFFFFFD8                     	CALL	_wait_KBC_sendready
-    31 00000028 6A 47                           	PUSH	71
+     8 00000000                                 	EXTERN	_fifo32_put
+     9 00000000                                 [FILE "keyboard.c"]
+    10                                          [SECTION .text]
+    11 00000000                                 	GLOBAL	_wait_KBC_sendready
+    12 00000000                                 _wait_KBC_sendready:
+    13 00000000 55                              	PUSH	EBP
+    14 00000001 89 E5                           	MOV	EBP,ESP
+    15 00000003                                 L2:
+    16 00000003 6A 64                           	PUSH	100
+    17 00000005 E8 [00000000]                   	CALL	_io_in8
+    18 0000000A 5A                              	POP	EDX
+    19 0000000B 83 E0 02                        	AND	EAX,2
+    20 0000000E 75 F3                           	JNE	L2
+    21 00000010 C9                              	LEAVE
+    22 00000011 C3                              	RET
+    23 00000012                                 	GLOBAL	_init_keyboard
+    24 00000012                                 _init_keyboard:
+    25 00000012 55                              	PUSH	EBP
+    26 00000013 89 E5                           	MOV	EBP,ESP
+    27 00000015 8B 45 08                        	MOV	EAX,DWORD [8+EBP]
+    28 00000018 A3 [00000000]                   	MOV	DWORD [_keyfifo],EAX
+    29 0000001D 8B 45 0C                        	MOV	EAX,DWORD [12+EBP]
+    30 00000020 A3 [00000004]                   	MOV	DWORD [_keydata0],EAX
+    31 00000025 E8 FFFFFFD6                     	CALL	_wait_KBC_sendready
     32 0000002A 6A 60                           	PUSH	96
-    33 0000002C E8 [00000000]                   	CALL	_io_out8
-    34 00000031 C9                              	LEAVE
-    35 00000032 C3                              	RET
+    33 0000002C 6A 64                           	PUSH	100
+    34 0000002E E8 [00000000]                   	CALL	_io_out8
+    35 00000033 E8 FFFFFFC8                     	CALL	_wait_KBC_sendready
+    36 00000038 59                              	POP	ECX
+    37 00000039 58                              	POP	EAX
+    38 0000003A C7 45 0C 00000047               	MOV	DWORD [12+EBP],71
+    39 00000041 C7 45 08 00000060               	MOV	DWORD [8+EBP],96
+    40 00000048 C9                              	LEAVE
+    41 00000049 E9 [00000000]                   	JMP	_io_out8
+    42 0000004E                                 	GLOBAL	_inthandler21
+    43 0000004E                                 _inthandler21:
+    44 0000004E 55                              	PUSH	EBP
+    45 0000004F 89 E5                           	MOV	EBP,ESP
+    46 00000051 6A 61                           	PUSH	97
+    47 00000053 6A 20                           	PUSH	32
+    48 00000055 E8 [00000000]                   	CALL	_io_out8
+    49 0000005A 6A 60                           	PUSH	96
+    50 0000005C E8 [00000000]                   	CALL	_io_in8
+    51 00000061 03 05 [00000004]                	ADD	EAX,DWORD [_keydata0]
+    52 00000067 50                              	PUSH	EAX
+    53 00000068 FF 35 [00000000]                	PUSH	DWORD [_keyfifo]
+    54 0000006E E8 [00000000]                   	CALL	_fifo32_put
+    55 00000073 C9                              	LEAVE
+    56 00000074 C3                              	RET
+    57 00000075                                 	GLOBAL	_keyfifo
+    58                                          [SECTION .data]
+    59 00000000                                 	ALIGNB	4
+    60 00000000                                 _keyfifo:
+    61 00000000 00 00 00 00                     	RESB	4
+    62 00000004                                 	GLOBAL	_keydata0
+    63                                          [SECTION .data]
+    64 00000004                                 	ALIGNB	4
+    65 00000004                                 _keydata0:
+    66 00000004 00 00 00 00                     	RESB	4

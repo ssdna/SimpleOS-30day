@@ -1,0 +1,957 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"put",
+				"putfonts8_asc_sht"
+			],
+			[
+				"putfo",
+				"putfonts8_asc_sht"
+			],
+			[
+				"io_s",
+				"io_store_eflags"
+			],
+			[
+				"ti",
+				"timeout"
+			],
+			[
+				"time",
+				"timers"
+			],
+			[
+				"tim",
+				"timer"
+			],
+			[
+				"timers",
+				"timers0"
+			],
+			[
+				"tic",
+				"timerctl"
+			],
+			[
+				"fifo",
+				"fifo8_put"
+			],
+			[
+				"TIMERFL",
+				"TIMER_FLAGS_ALLOC"
+			],
+			[
+				"buf",
+				"buf_win"
+			],
+			[
+				"memma",
+				"memman_alloc_4k"
+			],
+			[
+				"bu",
+				"buf"
+			],
+			[
+				"scrn",
+				"scrny"
+			],
+			[
+				"sht",
+				"shtctl"
+			],
+			[
+				"sheet_re",
+				"sheet_refresh"
+			],
+			[
+				"sheet_ref",
+				"sheet_refreshsub"
+			],
+			[
+				"old_v",
+				"old_vy0"
+			],
+			[
+				"v",
+				"vx0"
+			],
+			[
+				"buf_",
+				"buf_mouse"
+			],
+			[
+				"sc",
+				"scrny"
+			],
+			[
+				"mem",
+				"memman_alloc_4k"
+			],
+			[
+				"vy",
+				"vy0"
+			],
+			[
+				"vx",
+				"vx0"
+			],
+			[
+				"sheets",
+				"sheets"
+			],
+			[
+				"sheet",
+				"sheets"
+			],
+			[
+				"SHE",
+				"SHEET_USE"
+			],
+			[
+				"men",
+				"memman_init"
+			],
+			[
+				"MEM",
+				"MEMMAN_FREES"
+			],
+			[
+				"lost",
+				"lostsize"
+			],
+			[
+				"COL",
+				"COL8_008400"
+			],
+			[
+				"m",
+				"mouse_dbuf"
+			],
+			[
+				"mou",
+				"mouse_dbuf"
+			],
+			[
+				"mouse",
+				"mouse_dbuf"
+			],
+			[
+				"fifo8",
+				"fifo8_get"
+			],
+			[
+				"in",
+				"init_keyboard"
+			],
+			[
+				"KEY",
+				"KEYCMD_SENDTO_MOUSE"
+			],
+			[
+				"PO",
+				"PORT_KEYCMD"
+			],
+			[
+				"POR",
+				"PORT_KEYDAT"
+			],
+			[
+				"KE",
+				"KEYCMD_WRITE_MODE"
+			],
+			[
+				"PORT",
+				"PORT_KEYSTA"
+			],
+			[
+				"key",
+				"keyfifo"
+			],
+			[
+				"next",
+				"next_r"
+			],
+			[
+				"asm",
+				"asm_inthandler21"
+			],
+			[
+				"ADR_B",
+				"ADR_BOOTINFO"
+			],
+			[
+				"putfont8",
+				"putfonts8_asc"
+			],
+			[
+				"OBJ",
+				"OBJS_BOOTPACK"
+			],
+			[
+				"load_",
+				"load_idtr"
+			],
+			[
+				"limit",
+				"limit_low"
+			],
+			[
+				"init",
+				"init_mouse_cursor8"
+			],
+			[
+				"COL8_0000",
+				"COL8_0000FF"
+			],
+			[
+				"r",
+				"rgb"
+			],
+			[
+				"0x0",
+				"0x03c9"
+			],
+			[
+				"to",
+				"TOOLPATH"
+			],
+			[
+				"ipl",
+				"ipl.bin"
+			],
+			[
+				"hello",
+				"helloos.img"
+			],
+			[
+				"console",
+				"console.log('fyt"
+			],
+			[
+				"p",
+				"print"
+			],
+			[
+				"text",
+				"text-decoration"
+			],
+			[
+				"teal",
+				"text-align"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"marg",
+				"margin"
+			],
+			[
+				"Po",
+				"PORT"
+			],
+			[
+				"lis",
+				"listening"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"exp",
+				"exports"
+			],
+			[
+				"i",
+				"if	if"
+			],
+			[
+				"cla",
+				"callback"
+			],
+			[
+				"re",
+				"return"
+			],
+			[
+				"call",
+				"callback"
+			],
+			[
+				"fu",
+				"fun	Function"
+			],
+			[
+				"fun",
+				"fun	Function"
+			],
+			[
+				"connect",
+				"connect-flash"
+			],
+			[
+				"set",
+				"settings"
+			],
+			[
+				"express",
+				"express-session"
+			],
+			[
+				"hea",
+				"header	<header>"
+			],
+			[
+				"by",
+				"bytes1"
+			],
+			[
+				"Sys",
+				"System.out.println"
+			],
+			[
+				"get",
+				"getBytes"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"style",
+				"style	Attr"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"link",
+				"link	Tag"
+			],
+			[
+				"co",
+				"color"
+			],
+			[
+				"lin",
+				"line-height"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"w",
+				"width"
+			],
+			[
+				"bor",
+				"border-radius"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"Hero",
+				"HeroService"
+			],
+			[
+				"my",
+				"my-hero-detail"
+			],
+			[
+				"seled",
+				"selectedHero"
+			],
+			[
+				"sele",
+				"selectedHero"
+			],
+			[
+				"is_a",
+				"is_array"
+			],
+			[
+				"conso",
+				"console.log"
+			],
+			[
+				"recordI",
+				"recordInfoDOM"
+			],
+			[
+				"recor",
+				"recordedTime"
+			],
+			[
+				"child",
+				"first-child"
+			],
+			[
+				"te",
+				"text"
+			],
+			[
+				"z",
+				"z-index"
+			],
+			[
+				"di",
+				"div	Tag"
+			],
+			[
+				"control",
+				"controlInfos"
+			],
+			[
+				"bt",
+				"bt_info"
+			],
+			[
+				"app",
+				"append"
+			],
+			[
+				"controlI",
+				"controlImages"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
+				"contro",
+				"control_bt_img"
+			],
+			[
+				"contro_bt",
+				"control_bt_nomal"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "fyt/fifo.c",
+			"settings":
+			{
+				"buffer_size": 758,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 375.0,
+		"last_filter": "ssc",
+		"selected_items":
+		[
+			[
+				"ssc",
+				"Set Syntax: CSS"
+			],
+			[
+				"ssjs",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"ssh",
+				"Set Syntax: HTML"
+			],
+			[
+				"cf",
+				"CodeFormatter: Format as Javascript Syntax"
+			],
+			[
+				"pc",
+				"Package Control: Enable Package"
+			],
+			[
+				"",
+				"Package Control: Install Package"
+			],
+			[
+				"fm",
+				"CodeFormatter: Format Code"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package→安装插件"
+			],
+			[
+				"install",
+				"Package Control: Install Package→安装插件"
+			],
+			[
+				"ssj",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"in",
+				"Package Control: Install Package→安装插件"
+			],
+			[
+				"i",
+				"Package Control: Install Package→安装插件"
+			]
+		],
+		"width": 386.0
+	},
+	"console":
+	{
+		"height": 176.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+	],
+	"file_history":
+	[
+		"/C/Users/NaOH/Desktop/30天自制操作系统/fyt/timer.c",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/fyt/naskfunc.nas",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/fyt/bootpack.c",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/fyt/bootpack.h",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/fyt/sheet.c",
+		"/C/Program Files/Shadowsocks/pac.txt",
+		"/C/Users/NaOH/Desktop/OS/tolset/harib10c/bootpack.c",
+		"/C/Users/NaOH/Desktop/OS/tolset/harib10c/dsctbl.c",
+		"/C/Users/NaOH/Desktop/OS/tolset/harib10c/timer.c",
+		"/C/Users/NaOH/Desktop/OS/tolset/harib10b/bootpack.c",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/fyt/graphic.c",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/fyt/memory.c",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/fyt/Makefile",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/README.md",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/fyt/mouse.c",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/fyt/keyboard.c",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/fyt/int.c",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/fyt/fifo.c",
+		"/C/Users/NaOH/Desktop/OS/projects/07_day/harib04g/bootpack.c",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/fyt/desctbl.c",
+		"/C/Users/NaOH/Desktop/OS/projects/07_day/harib04c/bootpack.c",
+		"/C/Users/NaOH/Desktop/OS/projects/07_day/harib04c/int.c",
+		"/C/Users/NaOH/Desktop/OS/projects/07_day/harib04c/bootpack.h",
+		"/C/Users/NaOH/Desktop/OS/tolset/harib04b/naskfunc.nas",
+		"/C/Users/NaOH/Desktop/OS/tolset/harib04b/int.c",
+		"/C/Users/NaOH/Desktop/OS/tolset/harib04b/bootpack.c",
+		"/C/Users/NaOH/Desktop/OS/tolset/harib04b/bootpack.h",
+		"/C/Users/NaOH/Desktop/OS/projects/07_day/harib04b/int.c",
+		"/C/Users/NaOH/Desktop/OS/projects/07_day/harib04b/bootpack.h",
+		"/C/Users/NaOH/Desktop/OS/projects/07_day/harib04b/bootpack.c",
+		"/C/Users/NaOH/Desktop/OS/projects/07_day/harib04a/int.c",
+		"/C/Users/NaOH/Desktop/OS/projects/07_day/harib04a/bootpack.c",
+		"/C/Users/NaOH/Desktop/OS/projects/06_day/harib03e/bootpack.c",
+		"/C/Users/NaOH/Desktop/OS/projects/06_day/harib03e/dsctbl.c",
+		"/C/Users/NaOH/Desktop/OS/projects/06_day/harib03e/int.c",
+		"/C/Users/NaOH/Desktop/OS/projects/06_day/harib03e/bootpack.h",
+		"/C/Users/NaOH/Desktop/OS/projects/06_day/harib03e/naskfunc.nas",
+		"/C/Users/NaOH/Desktop/OS/projects/06_day/harib03e/asmhead.nas",
+		"/C/Users/NaOH/Desktop/OS/projects/06_day/harib03c/Makefile",
+		"/C/Users/NaOH/Desktop/OS/projects/06_day/harib03c/bootpack.c",
+		"/C/Users/NaOH/Desktop/OS/projects/06_day/harib03c/bootpack.h",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/fyt/bootpackk.h",
+		"/C/Users/NaOH/Desktop/OS/projects/06_day/harib03c/dsctbl.c",
+		"/C/Users/NaOH/Desktop/OS/projects/05_day/harib02i/naskfunc.nas",
+		"/C/Users/NaOH/Desktop/OS/projects/05_day/harib02i/bootpack.c",
+		"/C/Users/NaOH/Desktop/30dayMakeOS/05_day/bootpack.c",
+		"/C/Users/NaOH/Desktop/OS/projects/05_day/harib02g/bootpack.c",
+		"/C/Users/NaOH/Desktop/OS/projects/05_day/harib02g/Makefile",
+		"/C/Users/NaOH/Desktop/OS/projects/05_day/harib02g/naskfunc.nas",
+		"/C/Users/NaOH/Desktop/OS/projects/05_day/harib02g/asmhead.nas",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/fyt/asmhead.nas",
+		"/C/Users/NaOH/Desktop/30dayMakeOS/05_day/Makefile",
+		"/C/Users/NaOH/Desktop/OS/projects/04_day/harib01h/bootpack.c",
+		"/C/Users/NaOH/Desktop/OS/projects/04_day/harib01h/naskfunc.nas",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/fyt/bootpack.nas",
+		"/C/Users/NaOH/Desktop/OS/projects/04_day/harib01a/naskfunc.nas",
+		"/C/Users/NaOH/Desktop/OS/projects/03_day/harib00j/naskfunc.nas",
+		"/C/Users/NaOH/Desktop/OS/projects/03_day/harib00j/Makefile",
+		"/C/Users/NaOH/Desktop/OS/projects/03_day/harib00i/asmhead.nas",
+		"/C/Users/NaOH/Desktop/OS/projects/03_day/harib00i/Makefile",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/ipl10.nas",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/asmhead.nas",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/Makefile",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/bootpack.c",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/z_tools/haribote/haribote.rul",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/run.bat",
+		"/C/Users/NaOH/Desktop/OS/projects/03_day/harib00i/bootpack.c",
+		"/C/Users/NaOH/Desktop/OS/projects/03_day/harib00e/Makefile",
+		"/C/Users/NaOH/Desktop/OS/projects/03_day/harib00e/haribote.nas",
+		"/C/Users/NaOH/Desktop/OS/projects/03_day/harib00e/ipl.nas",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/fyt.nas",
+		"/C/Users/NaOH/Desktop/30dayMakeOS/03_day/ipl10.nas",
+		"/C/Users/NaOH/Desktop/30dayMakeOS/03_day/Makefile",
+		"/C/Users/NaOH/Desktop/30dayMakeOS/03_day/asmhead.nas",
+		"/C/Users/NaOH/Desktop/OS/tolset/harib00g/haribote.nas",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/ipl.nas",
+		"/C/Users/NaOH/Desktop/OS/projects/03_day/harib00j/asmhead.nas",
+		"/C/Users/NaOH/Desktop/OS/tolset/harib00e/Makefile",
+		"/C/Users/NaOH/Desktop/OS/tolset/harib00e/ipl.nas",
+		"/C/Users/NaOH/Desktop/OS/tolset/harib00f/ipl.nas",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/helloos.img",
+		"/C/Users/NaOH/Desktop/OS/tolset/harib00d/ipl.bin",
+		"/C/Users/NaOH/Desktop/OS/tolset/harib00d/ipl.nas",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/ipl.bin",
+		"/C/Users/NaOH/Desktop/OS/tolset/harib00d/Makefile",
+		"/C/Users/NaOH/Desktop/OS/tolset/harib00d/ipl.lst",
+		"/C/Users/NaOH/Desktop/OS/projects/03_day/harib00d/ipl.nas",
+		"/C/Users/NaOH/Desktop/OS/projects/03_day/harib00b/ipl.nas",
+		"/C/Users/NaOH/Desktop/OS/projects/03_day/harib00a/Makefile",
+		"/C/Users/NaOH/Desktop/OS/projects/03_day/harib00a/ipl.nas",
+		"/C/Users/NaOH/Desktop/OS/tolset/helloos5/Makefile",
+		"/C/Users/NaOH/Desktop/30dayMakeOS/02_day/ipl.nas",
+		"/C/Users/NaOH/Desktop/OS/projects/02_day/helloos5/Makefile",
+		"/C/Users/NaOH/Desktop/OS/projects/02_day/helloos5/ipl.nas",
+		"/C/Users/NaOH/Desktop/OS/tolset/helloos5/ipl.lst",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/ipl.lst",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/z_tools/fdimg0tw.tek",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/z_tools/fdimg0at.tek",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/helloos2.nas",
+		"/C/Users/NaOH/Desktop/OS/projects/02_day/helloos4/ipl.nas",
+		"/C/Users/NaOH/Desktop/OS/tolset/z_new_w/Makefile",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/make.bat",
+		"/C/Users/NaOH/Desktop/OS/tolset/helloos4/ipl.lst",
+		"/C/Users/NaOH/Desktop/30dayMakeOS/02_day/Makefile",
+		"/C/Users/NaOH/Desktop/OS/tolset/helloos4/ipl.bin",
+		"/C/Users/NaOH/Desktop/OS/projects/02_day/helloos3/helloos.nas",
+		"/C/Users/NaOH/Desktop/30天自制操作系统/install.bat",
+		"/C/Users/NaOH/Desktop/30dayMakeOS/01_day/helloos.img",
+		"/C/Users/NaOH/Desktop/30dayMakeOS/01_day/helloos.nas",
+		"/G/._.Trashes",
+		"/C/Users/NaOH/Desktop/draft-cheshire-sudn-ipv4only-dot-arpa-06_2016140449_王楠.txt",
+		"/C/Users/NaOH/AppData/Local/Temp/scp15021/var/www/wlgf/Public/noVNC/css/vm.css",
+		"/C/Users/NaOH/AppData/Local/Temp/scp13783/var/www/wlgf/Public/noVNC/js/vm_canvas.js",
+		"/C/Users/NaOH/AppData/Local/Temp/scp08370/var/www/wlgf/Application/Admin/View/noVNC/vnc_canvas.html",
+		"/C/Users/NaOH/AppData/Local/Temp/scp02350/var/www/wlgf/Public/noVNC/js/vm_canvas.js",
+		"/C/Users/NaOH/AppData/Local/Temp/scp01255/var/www/wlgf/Application/Admin/View/noVNC/vnc_canvas.html",
+		"/C/Users/NaOH/AppData/Local/Temp/scp58056/var/www/wlgf/Application/Admin/Controller/VMController.class.php",
+		"/D/DM/fenci/jieba_test.py",
+		"/D/BaiduYunDownload/《音效示范·极音天碟》/07",
+		"/D/BaiduYunDownload/《音效示范·极音天碟》/梁祝.wav.baiduyun.downloading.cfg",
+		"/D/DM/news_tensite_xml.dat",
+		"/C/Users/NaOH/Desktop/jd-gui.cfg",
+		"/C/Users/NaOH/Desktop/1234.mep",
+		"/C/Users/NaOH/Desktop/mv/IMG_7821_Subtitle_Export/IMG_7821.srt",
+		"/C/Users/NaOH/Desktop/mv/IMG_7821.atpj",
+		"/C/Users/NaOH/Desktop/mv/导出/爱剪辑-lt_Subtitle_Export/爱剪辑-lt.srt",
+		"/D/nodejs_project/blog/views/header.ejs",
+		"/D/nodejs_project/blog/views/reg.ejs"
+	],
+	"find":
+	{
+		"height": 36.0
+	},
+	"find_in_files":
+	{
+		"height": 104.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"count",
+			"memman_alloc_4k",
+			"memman_allock",
+			"menman",
+			"sheet_slide",
+			"MEMMAM",
+			"memman_alloc_4k",
+			"i ",
+			"i",
+			"hello",
+			"fin",
+			"~",
+			"。",
+			"，",
+			"‘’",
+			"：",
+			"；",
+			";",
+			"DB	0x0a",
+			"名称",
+			"他们不",
+			"他们不是",
+			"他们不是负责",
+			"Table of Contents",
+			"自治",
+			"control_record_stop",
+			"router",
+			"login_submit",
+			"主页",
+			"	",
+			" ",
+			">",
+			"	",
+			" ",
+			"1",
+			"-",
+			".",
+			"1",
+			"0",
+			"1",
+			"0",
+			"1",
+			"0",
+			"-",
+			"0",
+			"1",
+			" ",
+			"	",
+			" ",
+			"	",
+			" ",
+			";\n",
+			"control_switch_panel",
+			"control_bt_slash_h",
+			"control_switch_panel",
+			"slide",
+			"control_bt_slash",
+			".control_bt_slash",
+			"fade",
+			"manual",
+			"togglec",
+			"control_switch_panel",
+			"\"<\"",
+			"boxframe_bt",
+			"nice",
+			"ctrl+alt+f",
+			"ctrl+alt+F",
+			"ctrl+alt+",
+			"ctrl+alt+f",
+			"ctrl+alt",
+			"ctr+alt",
+			"ctr+alt+f",
+			"tooltips",
+			"getip",
+			";",
+			"control_bt_nomal",
+			"control_panel_content",
+			"control_panel_switcher",
+			"7",
+			"7deg",
+			"control_panel_switcher",
+			"\n<",
+			"recordIconDOM",
+			"restartRecord",
+			"recordInterval",
+			"control_panel_record",
+			"updateTimer",
+			"startRecord",
+			"control_panel_record",
+			"control_record_status",
+			"192px",
+			"control_bt_record_icon",
+			"control_record_info",
+			"control_panel_record",
+			"control_record_info",
+			"control_panel_record",
+			"control_record_detail",
+			"//",
+			"control_panel_record",
+			"min",
+			"timeCounter",
+			"min",
+			"recordInterval",
+			"recordedTime",
+			"isRecording",
+			";",
+			"control_bt_nomal",
+			"control_bt_img",
+			"control_record_info",
+			"/Public/images/vnc_images/",
+			"text"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"1",
+			"0",
+			"1",
+			"-",
+			".",
+			"1",
+			".",
+			"-",
+			".",
+			"-",
+			".",
+			"-",
+			".",
+			"-",
+			"1",
+			"0",
+			"1",
+			"0"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "fyt/fifo.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 758,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								444,
+								444
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/C++/C.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 54.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 40.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "30天自制操作系统.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"java",
+				"F:\\HelloWorld.java"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 172.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+		"max_columns": 2
+	}
+}
